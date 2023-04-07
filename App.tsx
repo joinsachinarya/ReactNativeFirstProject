@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {TextInput, StyleSheet, Button} from 'react-native';
+import {TextInput, StyleSheet, Text} from 'react-native';
 import Container from './src/components/Container';
+import CustomButton from './src/components/CustomButton';
 
 enum InputType {
   EMAIL = 'Email',
@@ -34,6 +35,7 @@ const App = () => {
 
   return (
     <Container containerStyles={{}}>
+      <Text style={styles.heading}>Login</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -46,7 +48,7 @@ const App = () => {
         value={formValues.password}
         onChangeText={value => updateValues(value, InputType.PASSWORD)}
       />
-      <Button title="LOGIN" onPress={handleLogin} />
+      <CustomButton title="LOGIN" onPress={handleLogin} />
     </Container>
   );
 };
@@ -58,6 +60,11 @@ const styles = StyleSheet.create({
     width: 300,
     borderWidth: 1,
     marginBottom: 10,
+  },
+  heading: {
+    marginBottom: 10,
+    letterSpacing: 5,
+    fontSize: 25,
   },
 });
 
