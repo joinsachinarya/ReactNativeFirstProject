@@ -1,0 +1,64 @@
+import React, {useState} from 'react';
+import {TextInput, StyleSheet, Button} from 'react-native';
+import Container from './src/components/Container';
+
+enum InputType {
+  EMAIL = 'Email',
+  PASSWORD = 'Password',
+}
+
+const App = () => {
+  const [formValues, setFormValues] = useState({
+    email: '',
+    password: '',
+  });
+
+  const updateValues = (value: any, type: string) => {
+    switch (type) {
+      case InputType.EMAIL: {
+        setFormValues({...formValues, email: value});
+        console.log(value);
+        break;
+      }
+      case InputType.PASSWORD: {
+        setFormValues({...formValues, password: value});
+        console.log(value);
+        break;
+      }
+    }
+  };
+
+  const handleLogin = () => {
+    console.log('Logged In', formValues);
+  };
+
+  return (
+    <Container containerStyles={{}}>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        value={formValues.email}
+        onChangeText={value => updateValues(value, InputType.EMAIL)}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        value={formValues.password}
+        onChangeText={value => updateValues(value, InputType.PASSWORD)}
+      />
+      <Button title="LOGIN" onPress={handleLogin} />
+    </Container>
+  );
+};
+
+const styles = StyleSheet.create({
+  input: {
+    alignSelf: 'center',
+    padding: 10,
+    width: 300,
+    borderWidth: 1,
+    marginBottom: 10,
+  },
+});
+
+export default App;
